@@ -5,7 +5,8 @@ import pytest
 # esta función cambia los valores en el parámetro "name"
 def get_kit_body(kit_name):
     current_kit_body = data.kit_body.copy()
-    current_kit_body["name"] = kit_name
+    assert current_kit_body["name"] == kit_name
+    #current_kit_body["name"] = kit_name
     return current_kit_body
 
 def positive_assert(kit_name_value):
