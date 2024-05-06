@@ -5,8 +5,7 @@ import pytest
 # esta función cambia los valores en el parámetro "name"
 def get_kit_body(kit_name):
     current_kit_body = data.kit_body.copy()
-    assert current_kit_body["name"] == kit_name
-    #current_kit_body["name"] = kit_name
+    current_kit_body["name"] = kit_name
     return current_kit_body
 
 def positive_assert(kit_name_value):
@@ -14,7 +13,8 @@ def positive_assert(kit_name_value):
     kit_response = sender_stand_request.post_new_client_kit(kit_body)
     assert kit_response.status_code == 201
     # El campo "name" del cuerpo de la respuesta coincide con el campo "name" del cuerpo de la solicitud
-    print(kit_response.json())
+    response = kit_response.json()
+    assert response['name'] == kit_name_value
 
 def negative_assert_code_400(kit_name_value_2):
     kit_body2 = get_kit_body(kit_name_value_2)
